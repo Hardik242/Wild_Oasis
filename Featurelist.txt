@@ -1,0 +1,11 @@
+## Libraries and technologies used are:
+- ReactJs
+- React Query
+- Styled Components
+- Supabase
+- React Hook Form
+- React Toasts
+- React Icons
+
+## Features implemented are:
+- Dark theme
