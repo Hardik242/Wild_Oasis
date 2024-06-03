@@ -32,7 +32,8 @@ export default function App() {
             <GlobalStyles />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/dashboard" element={<AppLayout />}>
+                    <Route index element={<Navigate replace to="app" />} />
+                    <Route path="app" element={<AppLayout />}>
                         <Route
                             index
                             element={<Navigate replace to="dashboard" />}
