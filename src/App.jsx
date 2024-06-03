@@ -44,6 +44,7 @@ export default function App() {
                         <Route path="users" element={<NewUsers />} />
                         <Route path="settings" element={<Settings />} />
                         <Route path="account" element={<Account />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Route>
                     <Route path="login" element={<Login />} />
                     <Route path="*" element={<PageNotFound />} />
