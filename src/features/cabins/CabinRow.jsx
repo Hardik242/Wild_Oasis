@@ -6,6 +6,7 @@ import Spinner from "../../ui/Spinner";
 import toast from "react-hot-toast";
 import {useState} from "react";
 import CreateCabinForm from "./CreateCabinForm";
+import useDeleteCabin from "./useDeleteCabin";
 
 const TableRow = styled.div`
     display: grid;
@@ -70,21 +71,7 @@ export default function CabinRow({cabin}) {
         image,
     } = cabin;
 
-    const queryClient = useQueryClient();
-
-    const {isLoading: isDeleting, mutate} = useMutation({
-        mutationFn: deleteCabin,
-        onSuccess: () => {
-            toast.success("Cabin successfully deleted");
-            queryClient.invalidateQueries({
-                queryKey: ["cabins"],
-            });
-        },
-        onError: (error) => {
-            toast.error(error.message);
-            console.log(error);
-        },
-    });
+    const {isDeleting, deleteCabin} = useDeleteCabin();
 
     return (
         <>
@@ -105,7 +92,7 @@ export default function CabinRow({cabin}) {
                 )}
                 <div>
                     <button onClick={() => setShowForm((s) => !s)}>Edit</button>
-                    <button onClick={() => mutate(cabinId)}>Delete</button>
+                    <button onClick={() => deleteCabin(cabinId)}>Delete</button>
                 </div>
             </TableRow>
             {showForm && (

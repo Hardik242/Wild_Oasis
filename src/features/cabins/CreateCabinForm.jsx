@@ -10,6 +10,8 @@ import toast from "react-hot-toast";
 import FormRow from "../../ui/FormRow";
 
 import {insertEditCabin} from "../../services/apiCabins";
+import useCreateCabin from "./useCreateCabin";
+import useEditCabin from "./useEditCabin";
 
 function CreateCabinForm({setShowForm, cabinToEdit = {}}) {
     const {id: editId, ...editValues} = cabinToEdit;
@@ -19,37 +21,8 @@ function CreateCabinForm({setShowForm, cabinToEdit = {}}) {
         defaultValues: toEditCabin ? editValues : {},
     });
     const {errors} = formState;
-
-    const queryClient = useQueryClient();
-
-    const {isLoading: isCreating, mutate: createCabin} = useMutation({
-        mutationFn: insertEditCabin,
-        onSuccess: () => {
-            toast.success("New Cabin Successfully Added");
-            queryClient.invalidateQueries({
-                queryKey: ["cabins"],
-            });
-            reset();
-        },
-        onError: (error) => {
-            toast.error(error.message);
-        },
-    });
-
-    const {isLoading: isEditing, mutate: editCabin} = useMutation({
-        mutationFn: ({newCabinData, id}) => insertEditCabin(newCabinData, id),
-        onSuccess: () => {
-            toast.success("Cabin Successfully Edited");
-            queryClient.invalidateQueries({
-                queryKey: ["cabins"],
-            });
-            setShowForm((s) => !s);
-            reset();
-        },
-        onError: (error) => {
-            toast.error(error.message);
-        },
-    });
+    const {isCreating, createCabin} = useCreateCabin();
+    const {isEditing, editCabin} = useEditCabin();
 
     const isWorking = isCreating || isEditing;
 
@@ -60,8 +33,24 @@ function CreateCabinForm({setShowForm, cabinToEdit = {}}) {
                 : cabinData.image[0];
 
         if (toEditCabin)
-            editCabin({newCabinData: {...cabinData, image}, id: editId});
-        else createCabin({...cabinData, image});
+            editCabin(
+                {newCabinData: {...cabinData, image}, id: editId},
+                {
+                    onSuccess: () => {
+                        setShowForm((s) => !s);
+                        reset();
+                    },
+                }
+            );
+        else
+            createCabin(
+                {...cabinData, image},
+                {
+                    onSuccess: () => {
+                        reset();
+                    },
+                }
+            );
     }
 
     return (
