@@ -16,34 +16,50 @@ export async function deleteCabin(id) {
     }
 }
 
-export async function insertCabin(newCabin) {
-    const imageName = `${parseInt(
-        Math.random() * 10000000000
-    )}-${newCabin.image[0].name.replaceAll("/", "")}`;
+export async function insertEditCabin(newCabin, id) {
+    console.log(newCabin, id);
+    const hasImage = newCabin.image?.startsWith?.(supabaseUrl);
 
-    const imagePath = `${supabaseUrl}/storage/v1/object/public/cabins/${imageName}`;
+    const imageName = hasImage
+        ? null
+        : `${parseInt(
+              Math.random() * 10000000000
+          )}-${newCabin.image.name.replaceAll("/", "")}`;
 
-    //Create and Upload cabin
-    const {data, error: uploadError} = await supabase
-        .from("cabin")
-        .insert([{...newCabin, image: imagePath}])
-        .select();
+    const imagePath = hasImage
+        ? newCabin.image
+        : `${supabaseUrl}/storage/v1/object/public/cabins/${imageName}`;
 
+    const {data, error: uploadError} = !id
+        ? await supabase
+              .from("cabins")
+              .insert([{...newCabin, image: imagePath}])
+              .select()
+        : await supabase
+              .from("cabins")
+              .update({...newCabin, image: imagePath})
+              .eq("id", id)
+              .select();
     if (uploadError) {
         throw new Error("Cabin could not be Inserted");
     }
 
-    //Store Image to Cabins Bucket
-    const {error: storageError} = await supabase.storage
-        .from("cabins")
-        .upload(imageName, newCabin.image[0]);
+    // Store Image to Cabins Bucket
+    const {error: storageError} = !hasImage
+        ? await supabase.storage
+              .from("cabins")
+              .upload(imageName, newCabin.image)
+        : {error: null};
 
     //Delete cabin if Storage Error
-    if (storageError) {
+    if (storageError !== null) {
         deleteCabin(data.id);
         throw new Error("Cabin Image could not be uploaded");
     }
+
+    return data;
 }
+
 export async function updateCabin(newCabin) {
     const {error} = await supabase
         .from("cabins")

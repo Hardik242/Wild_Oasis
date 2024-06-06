@@ -4,6 +4,8 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {deleteCabin} from "../../services/apiCabins";
 import Spinner from "../../ui/Spinner";
 import toast from "react-hot-toast";
+import {useState} from "react";
+import CreateCabinForm from "./CreateCabinForm";
 
 const TableRow = styled.div`
     display: grid;
@@ -11,6 +13,7 @@ const TableRow = styled.div`
     column-gap: 2.4rem;
     align-items: center;
     padding: 1.4rem 2.4rem;
+    position: relative;
 
     &:not(:last-child) {
         border-bottom: 1px solid var(--color-grey-100);
@@ -44,7 +47,20 @@ const Discount = styled.div`
     color: var(--color-green-700);
 `;
 
+const SpinnerDiv = styled.div`
+    position: absolute;
+    backdrop-filter: blur(1.4px);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 export default function CabinRow({cabin}) {
+    const [showForm, setShowForm] = useState(false);
+
     const {
         id: cabinId,
         name,
@@ -70,16 +86,30 @@ export default function CabinRow({cabin}) {
         },
     });
 
-    if (isDeleting) return <Spinner />;
-
     return (
-        <TableRow role="row">
-            <Img src={image} />
-            <Cabin>{name}</Cabin>
-            <div>Fits upto {maxCapacity} people </div>
-            <Price>{formatCurrency(regularPrice)}</Price>
-            <Discount>{formatCurrency(discount)}</Discount>
-            <button onClick={() => mutate(cabinId)}>Delete</button>
-        </TableRow>
+        <>
+            <TableRow role="row">
+                {isDeleting && (
+                    <SpinnerDiv>
+                        <Spinner variations="isDeleting" />
+                    </SpinnerDiv>
+                )}
+                <Img src={image} />
+                <Cabin>{name}</Cabin>
+                <div>Fits upto {maxCapacity} people </div>
+                <Price>{formatCurrency(regularPrice)}</Price>
+                <Discount>{formatCurrency(discount)}</Discount>
+                <div>
+                    <button onClick={() => setShowForm((s) => !s)}>Edit</button>
+                    <button onClick={() => mutate(cabinId)}>Delete</button>
+                </div>
+            </TableRow>
+            {showForm && (
+                <CreateCabinForm
+                    setShowForm={setShowForm}
+                    cabinToEdit={cabin}
+                />
+            )}
+        </>
     );
 }
