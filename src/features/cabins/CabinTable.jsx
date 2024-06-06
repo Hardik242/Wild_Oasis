@@ -49,7 +49,8 @@ export default function CabinTable() {
                     <div></div>
                 </TableHeader>
                 {cabins
-                    ?.sort((a, b) => parseInt(a.name) - parseInt(b.name))
+                    // ?.sort((a, b) => parseInt(a.name) - parseInt(b.name))
+                    ?.sort((a, b) => a.name.localeCompare(b.name))
                     .map((cabin) => (
                         <CabinRow cabin={cabin} key={cabin.id} />
                     ))}
