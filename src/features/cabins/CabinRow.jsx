@@ -98,7 +98,11 @@ export default function CabinRow({cabin}) {
                 <Cabin>{name}</Cabin>
                 <div>Fits upto {maxCapacity} people </div>
                 <Price>{formatCurrency(regularPrice)}</Price>
-                <Discount>{formatCurrency(discount)}</Discount>
+                {discount ? (
+                    <Discount>{formatCurrency(discount)}</Discount>
+                ) : (
+                    <span>&mdash;</span>
+                )}
                 <div>
                     <button onClick={() => setShowForm((s) => !s)}>Edit</button>
                     <button onClick={() => mutate(cabinId)}>Delete</button>

@@ -32,7 +32,7 @@ const TableHeader = styled.header`
 `;
 
 export default function CabinTable() {
-    const {
+    let {
         isLoading,
         data: cabins,
         // error,
@@ -56,9 +56,11 @@ export default function CabinTable() {
                     <div>Discount</div>
                     <div></div>
                 </TableHeader>
-                {cabins.map((cabin) => (
-                    <CabinRow cabin={cabin} key={cabin.id} />
-                ))}
+                {cabins
+                    ?.sort((a, b) => parseInt(a.name) - parseInt(b.name))
+                    .map((cabin) => (
+                        <CabinRow cabin={cabin} key={cabin.id} />
+                    ))}
             </Table>
             <Button onClick={() => setShowForm((s) => !s)}>
                 Add new Cabin

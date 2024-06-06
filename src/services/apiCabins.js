@@ -17,7 +17,6 @@ export async function deleteCabin(id) {
 }
 
 export async function insertEditCabin(newCabin, id) {
-    console.log(newCabin, id);
     const hasImage = newCabin.image?.startsWith?.(supabaseUrl);
 
     const imageName = hasImage
