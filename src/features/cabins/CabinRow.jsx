@@ -1,9 +1,11 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {formatCurrency} from "../../utils/helpers";
 import Spinner from "../../ui/Spinner";
 import {useState} from "react";
 import CreateCabinForm from "./CreateCabinForm";
 import useDeleteCabin from "./useDeleteCabin";
+import {HiPencil, HiSquare2Stack, HiTrash} from "react-icons/hi2";
+import useCreateCabin from "./useCreateCabin";
 
 const TableRow = styled.div`
     display: grid;
@@ -56,8 +58,14 @@ const SpinnerDiv = styled.div`
     align-items: center;
 `;
 
+const style1 = {
+    display: "flex",
+    gap: "2px",
+};
+
 export default function CabinRow({cabin}) {
     const [showForm, setShowForm] = useState(false);
+    const {isCreating, createCabin} = useCreateCabin();
 
     const {
         id: cabinId,
@@ -66,14 +74,26 @@ export default function CabinRow({cabin}) {
         regularPrice,
         discount,
         image,
+        description,
     } = cabin;
+
+    function handleDuplicate() {
+        createCabin({
+            maxCapacity,
+            regularPrice,
+            discount,
+            image,
+            description,
+            name: `Copy of ${name}`,
+        });
+    }
 
     const {isDeleting, deleteCabin} = useDeleteCabin();
 
     return (
         <>
             <TableRow role="row">
-                {isDeleting && (
+                {(isDeleting || isCreating) && (
                     <SpinnerDiv>
                         <Spinner variations="isDeleting" />
                     </SpinnerDiv>
@@ -87,9 +107,16 @@ export default function CabinRow({cabin}) {
                 ) : (
                     <span>&mdash;</span>
                 )}
-                <div>
-                    <button onClick={() => setShowForm((s) => !s)}>Edit</button>
-                    <button onClick={() => deleteCabin(cabinId)}>Delete</button>
+                <div style={style1}>
+                    <button onClick={handleDuplicate}>
+                        <HiSquare2Stack />
+                    </button>
+                    <button onClick={() => setShowForm((s) => !s)}>
+                        <HiPencil />
+                    </button>
+                    <button onClick={() => deleteCabin(cabinId)}>
+                        <HiTrash />
+                    </button>
                 </div>
             </TableRow>
             {showForm && (
