@@ -20,7 +20,6 @@ function UpdateSettingsForm() {
 
     function handleUpdate(event, fieldName) {
         const {value} = event.target;
-        console.log(event);
 
         if (!value || fieldName === value) return;
 
