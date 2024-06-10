@@ -48,6 +48,7 @@ function UpdateSettingsForm() {
                     defaultValue={maxBookingLength}
                 />
             </FormRow>
+
             <FormRow label="Maximum guests/booking">
                 <Input
                     disabled={isUpdating}
