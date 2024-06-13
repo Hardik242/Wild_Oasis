@@ -1,6 +1,10 @@
 import {useEffect, useRef} from "react";
 
-export default function useOutsideClick(handler, listenCapturing = true) {
+export default function useOutsideClick(
+    handler,
+    listenCapturing = true,
+    isScroll = false
+) {
     const ref = useRef();
 
     useEffect(
@@ -11,13 +15,25 @@ export default function useOutsideClick(handler, listenCapturing = true) {
             }
 
             document.addEventListener("click", handleClick, listenCapturing);
+            if (isScroll)
+                document.addEventListener(
+                    "scroll",
+                    handleClick,
+                    listenCapturing
+                );
 
-            return () =>
+            return () => {
                 document.removeEventListener(
                     "click",
                     handleClick,
                     listenCapturing
                 );
+                document.addEventListener(
+                    "scroll",
+                    handleClick,
+                    listenCapturing
+                );
+            };
         },
         [handler, listenCapturing]
     );

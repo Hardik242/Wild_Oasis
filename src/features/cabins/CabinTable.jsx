@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import useCabin from "./useCabin";
+import Menus from "../../ui/Menus";
 
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
@@ -34,22 +35,24 @@ export default function CabinTable() {
 
     return (
         <>
-            <Table role="table">
-                <TableHeader role="row">
-                    <div></div>
-                    <div>Cabin</div>
-                    <div>Capacity</div>
-                    <div>Price</div>
-                    <div>Discount</div>
-                    <div></div>
-                </TableHeader>
-                {cabins
-                    // ?.sort((a, b) => parseInt(a.name) - parseInt(b.name))
-                    ?.sort((a, b) => a.name.localeCompare(b.name))
-                    .map((cabin) => (
-                        <CabinRow cabin={cabin} key={cabin.id} />
-                    ))}
-            </Table>
+            <Menus>
+                <Table role="table">
+                    <TableHeader role="row">
+                        <div></div>
+                        <div>Cabin</div>
+                        <div>Capacity</div>
+                        <div>Price</div>
+                        <div>Discount</div>
+                        <div></div>
+                    </TableHeader>
+                    {cabins
+                        // ?.sort((a, b) => parseInt(a.name) - parseInt(b.name))
+                        ?.sort((a, b) => a.name.localeCompare(b.name))
+                        .map((cabin) => (
+                            <CabinRow cabin={cabin} key={cabin.id} />
+                        ))}
+                </Table>
+            </Menus>
         </>
     );
 }
