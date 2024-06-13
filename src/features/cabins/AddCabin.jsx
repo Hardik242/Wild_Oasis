@@ -12,13 +12,6 @@ export default function AddCabin() {
             <Modal.Window name="cabin-form">
                 <CreateCabinForm />
             </Modal.Window>
-
-            <Modal.Open opens="cabin-table">
-                <Button>Show Table</Button>
-            </Modal.Open>
-            <Modal.Window name="cabin-table">
-                <CabinTable />
-            </Modal.Window>
         </Modal>
     );
 
