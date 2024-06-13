@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import {useState} from "react";
-import Button from "../../ui/Button";
-import CreateCabinForm from "./CreateCabinForm";
 import useCabin from "./useCabin";
 
 const Table = styled.div`
@@ -33,8 +30,6 @@ const TableHeader = styled.header`
 export default function CabinTable() {
     const {isLoading, cabins} = useCabin();
 
-    const [showForm, setShowForm] = useState(false);
-
     if (isLoading) return <Spinner />;
 
     return (
@@ -55,10 +50,6 @@ export default function CabinTable() {
                         <CabinRow cabin={cabin} key={cabin.id} />
                     ))}
             </Table>
-            <Button onClick={() => setShowForm((s) => !s)}>
-                Add new Cabin
-            </Button>
-            {showForm && <CreateCabinForm />}
         </>
     );
 }
