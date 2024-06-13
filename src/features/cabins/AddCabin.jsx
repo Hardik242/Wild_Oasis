@@ -6,17 +6,17 @@ import CabinTable from "./CabinTable";
 export default function AddCabin() {
     return (
         <Modal>
-            <Modal.Open open="cabin-form">
+            <Modal.Open opens="cabin-form">
                 <Button>Add New Cabin</Button>
             </Modal.Open>
-            <Modal.Window new="cabin-form">
+            <Modal.Window name="cabin-form">
                 <CreateCabinForm />
             </Modal.Window>
 
-            <Modal.Open open="cabin-table">
+            <Modal.Open opens="cabin-table">
                 <Button>Show Table</Button>
             </Modal.Open>
-            <Modal.Window new="cabin-table">
+            <Modal.Window name="cabin-table">
                 <CabinTable />
             </Modal.Window>
         </Modal>
