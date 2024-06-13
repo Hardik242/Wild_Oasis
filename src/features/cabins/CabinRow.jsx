@@ -121,12 +121,13 @@ export default function CabinRow({cabin}) {
                             <CreateCabinForm cabinToEdit={cabin} />
                         </Modal.Window>
 
-                        <Modal.Open>
+                        <Modal.Open opens="delete-cabin">
                             <button>
                                 <HiTrash />
                             </button>
                         </Modal.Open>
-                        <Modal.Window>
+
+                        <Modal.Window name="delete-cabin">
                             <ConfirmDelete
                                 resourceName="cabin"
                                 disabled={isDeleting}
