@@ -35,7 +35,7 @@ export default function useOutsideClick(
                 );
             };
         },
-        [handler, listenCapturing]
+        [handler, listenCapturing, isScroll]
     );
 
     return ref;
