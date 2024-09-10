@@ -5,6 +5,7 @@ import useCabin from "./useCabin";
 import Menus from "../../ui/Menus";
 import {useSearchParams} from "react-router-dom";
 import Empty from "../../ui/Empty";
+import toast from "react-hot-toast";
 
 const Table = styled.div`
     border: 1px solid var(--color-grey-200);
@@ -64,7 +65,8 @@ export default function CabinTable() {
             filteredCabins = cabins.filter((cabin) => cabin.discount === 0);
             break;
         default:
-            break;
+            filteredCabins = cabins;
+            toast.error("Misspelled search parameter");
     }
 
     const [field, direction] = sortBy.split("-");
