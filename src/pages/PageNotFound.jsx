@@ -1,47 +1,62 @@
 import styled from "styled-components";
 
-import { useMoveBack } from "../hooks/useMoveBack";
+import {useMoveBack} from "../hooks/useMoveBack";
 import Heading from "../ui/Heading";
+import {useMoveHomepage} from "../hooks/useMoveHomepage";
+import Button from "../ui/Button";
 
 const StyledPageNotFound = styled.main`
-  height: 100vh;
-  background-color: var(--color-grey-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4.8rem;
+    height: 100vh;
+    background-color: var(--color-grey-50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4.8rem;
 `;
 
 const Box = styled.div`
-  /* box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+    /* box */
+    background-color: var(--color-grey-0);
+    border: 1px solid var(--color-grey-100);
+    border-radius: var(--border-radius-md);
 
-  padding: 4.8rem;
-  flex: 0 1 96rem;
-  text-align: center;
+    padding: 4.8rem;
+    flex: 0 1 96rem;
+    text-align: center;
 
-  & h1 {
-    margin-bottom: 3.2rem;
-  }
+    & h1 {
+        margin-bottom: 3.2rem;
+    }
+`;
+
+const StyledButtonBox = styled.div`
+    /* padding: 1.5rem 0; */
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
 `;
 
 function PageNotFound() {
-  const moveBack = useMoveBack();
+    const moveBack = useMoveBack();
+    const moveHomepage = useMoveHomepage();
 
-  return (
-    <StyledPageNotFound>
-      <Box>
-        <Heading as="h1">
-          The page you are looking for could not be found 😢
-        </Heading>
-        <button onClick={moveBack} size="large">
-          &larr; Go back
-        </button>
-      </Box>
-    </StyledPageNotFound>
-  );
+    return (
+        <StyledPageNotFound>
+            <Box>
+                <Heading as="h1">
+                    The page you are looking for could not be found 😢
+                </Heading>
+                <StyledButtonBox>
+                    <Button onClick={moveBack} size="large">
+                        &larr;&nbsp; Go back
+                    </Button>
+                    <Button onClick={moveHomepage} size="large">
+                        &larr;&nbsp; Go to Homepage
+                    </Button>
+                </StyledButtonBox>
+            </Box>
+        </StyledPageNotFound>
+    );
 }
 
 export default PageNotFound;
