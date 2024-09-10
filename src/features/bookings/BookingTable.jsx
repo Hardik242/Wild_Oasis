@@ -1,31 +1,51 @@
 import BookingRow from "./BookingRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Empty from "../../ui/Empty";
+import styled from "styled-components";
+import useBooking from "./useBooking";
+import Spinner from "../../ui/Spinner";
+
+const EmptyDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    padding: 1.2rem 0;
+`;
 
 function BookingTable() {
-  const bookings = [];
+    const {bookings, isLoading} = useBooking();
 
-  return (
-    <Menus>
-      <Table columns="0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem">
-        <Table.Header>
-          <div>Cabin</div>
-          <div>Guest</div>
-          <div>Dates</div>
-          <div>Status</div>
-          <div>Amount</div>
-          <div></div>
-        </Table.Header>
+    if (isLoading) return <Spinner />;
 
-        <Table.Body
-          data={bookings}
-          render={(booking) => (
-            <BookingRow key={booking.id} booking={booking} />
-          )}
-        />
-      </Table>
-    </Menus>
-  );
+    if (!bookings?.length)
+        return (
+            <EmptyDiv>
+                <Empty resourceName="Bookings" />
+            </EmptyDiv>
+        );
+
+    return (
+        <Menus>
+            <Table columns="0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem">
+                <Table.Header>
+                    <div>Cabin</div>
+                    <div>Guest</div>
+                    <div>Dates</div>
+                    <div>Status</div>
+                    <div>Amount</div>
+                    <div></div>
+                </Table.Header>
+
+                <Table.Body
+                    data={bookings}
+                    render={(booking) => (
+                        <BookingRow key={booking.id} booking={booking} />
+                    )}
+                />
+            </Table>
+        </Menus>
+    );
 }
 
 export default BookingTable;
