@@ -1,5 +1,6 @@
 ## Libraries and technologies used are:
 - ReactJs
+- React Router
 - React Query
 - Styled Components
 - Supabase
@@ -8,4 +9,9 @@
 - React Icons
 
 ## Features implemented are:
-- Dark theme
+- Dark and Light theme
+- Pagination
+- API side filtering and sorting
+- Client side filtering and sorting
+- Prefetching
+- User authentication

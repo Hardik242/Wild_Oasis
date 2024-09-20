@@ -5,6 +5,7 @@ import Empty from "../../ui/Empty";
 import styled from "styled-components";
 import useBooking from "./useBooking";
 import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 
 const EmptyDiv = styled.div`
     display: flex;
@@ -14,7 +15,7 @@ const EmptyDiv = styled.div`
 `;
 
 function BookingTable() {
-    const {bookings, isLoading} = useBooking();
+    const {bookings, isLoading, count} = useBooking();
 
     if (isLoading) return <Spinner />;
 
@@ -43,6 +44,10 @@ function BookingTable() {
                         <BookingRow key={booking.id} booking={booking} />
                     )}
                 />
+
+                <Table.Footer>
+                    <Pagination count={count} />
+                </Table.Footer>
             </Table>
         </Menus>
     );
