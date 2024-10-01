@@ -1,12 +1,12 @@
 ## Libraries and technologies used are:
 - ReactJs
+- Supabase
 - React Router
 - React Query
-- Styled Components
-- Supabase
 - React Hook Form
 - React Toasts
 - React Icons
+- Styled Components
 
 ## Features implemented are:
 - Dark and Light theme
