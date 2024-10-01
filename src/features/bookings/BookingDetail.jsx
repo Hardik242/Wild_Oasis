@@ -47,6 +47,8 @@ function BookingDetail() {
             <BookingDataBox booking={booking} />
 
             <ButtonGroup>
+                <Button>Check in</Button>
+
                 <Button variation="secondary" onClick={moveBack}>
                     Back
                 </Button>

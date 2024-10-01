@@ -13,8 +13,8 @@ export default function useEditCabin() {
                 queryKey: ["cabins"],
             });
         },
-        onError: (error) => {
-            toast.error(error.message);
+        onError: () => {
+            toast.error("There was an error while editing cabin");
         },
     });
 
