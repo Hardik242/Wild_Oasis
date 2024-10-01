@@ -15,6 +15,7 @@ import AppLayout from "./ui/AppLayout";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {Toaster} from "react-hot-toast";
+import Booking from "./pages/Booking";
 
 //**-Setting up react query client for data caching-**
 const queryClient = new QueryClient({
@@ -40,6 +41,10 @@ export default function App() {
                         />
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="bookings" element={<Bookings />} />
+                        <Route
+                            path="bookings/:bookingId"
+                            element={<Booking />}
+                        />
                         <Route path="cabins" element={<Cabins />} />
                         <Route path="users" element={<NewUsers />} />
                         <Route path="settings" element={<Settings />} />
