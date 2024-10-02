@@ -78,7 +78,9 @@ function CheckinBooking() {
                         checked={addBreakfast}
                         onChange={() => {
                             setAddBreakfast((addBreakfast) => !addBreakfast);
-                            setConfirmPaid((confirmPaid) => !confirmPaid);
+                            setConfirmPaid(
+                                !addBreakfast ? false : booking.isPaid
+                            );
                         }}
                         id={"breakfast"}>
                         Want to add Breaskfast for{" "}

@@ -1,4 +1,4 @@
-import {PAGE_SIZE} from "../utils/globals";
+import {globals} from "../utils/globals";
 import {getToday} from "../utils/helpers";
 import supabase from "./supabase";
 
@@ -10,6 +10,7 @@ export async function getBookings({filter, sortBy, page}) {
             {count: "exact"}
         );
 
+    const {PAGE_SIZE} = globals;
     if (filter) {
         query = query[filter.method || "eq"](filter.field, filter.value);
     }

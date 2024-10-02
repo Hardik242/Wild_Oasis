@@ -6,7 +6,7 @@ export const cabins = [
     {
         name: "001",
         maxCapacity: 2,
-        regularPrice: 250,
+        regularPrice: 1500,
         discount: 0,
         image: imageUrl + "cabin-001.jpg",
         description:
@@ -15,8 +15,8 @@ export const cabins = [
     {
         name: "002",
         maxCapacity: 2,
-        regularPrice: 350,
-        discount: 25,
+        regularPrice: 2000,
+        discount: 600,
         image: imageUrl + "cabin-002.jpg",
         description:
             "Escape to the serenity of nature and indulge in luxury in our cozy cabin 002. Perfect for couples, this cabin offers a secluded and intimate retreat in the heart of a picturesque forest. Inside, you will find warm and inviting interiors crafted from high-quality wood, a comfortable living area, a fireplace and a fully-equipped kitchen. The luxurious bedroom features a plush king-size bed and spa-like shower. Relax on the private deck with hot tub and take in the beauty of nature.",
@@ -24,7 +24,7 @@ export const cabins = [
     {
         name: "003",
         maxCapacity: 4,
-        regularPrice: 300,
+        regularPrice: 4000,
         discount: 0,
         image: imageUrl + "cabin-003.jpg",
         description:
@@ -33,8 +33,8 @@ export const cabins = [
     {
         name: "004",
         maxCapacity: 4,
-        regularPrice: 500,
-        discount: 50,
+        regularPrice: 6000,
+        discount: 800,
         image: imageUrl + "cabin-004.jpg",
         description:
             "Indulge in the ultimate luxury family vacation in this medium-sized cabin 004. Designed for families of up to 4, this cabin offers a sumptuous retreat for the discerning traveler. Inside, the cabin boasts of opulent interiors crafted from the finest quality wood, a comfortable living area, a fireplace, and a fully-equipped gourmet kitchen. The bedrooms are adorned with plush beds and spa-inspired en-suite bathrooms. Step outside to your private deck and soak in the natural surroundings while relaxing in your own hot tub.",
@@ -42,7 +42,7 @@ export const cabins = [
     {
         name: "005",
         maxCapacity: 6,
-        regularPrice: 350,
+        regularPrice: 5000,
         discount: 0,
         image: imageUrl + "cabin-005.jpg",
         description:
@@ -51,8 +51,8 @@ export const cabins = [
     {
         name: "006",
         maxCapacity: 6,
-        regularPrice: 800,
-        discount: 100,
+        regularPrice: 4500,
+        discount: 800,
         image: imageUrl + "cabin-006.jpg",
         description:
             "Experience the epitome of luxury with your group or family in our spacious wooden cabin 006. Designed to comfortably accommodate up to 6 people, this cabin offers a lavish retreat in the heart of nature. Inside, the cabin features opulent interiors crafted from premium wood, a grand living area with fireplace, and a fully-equipped gourmet kitchen. The bedrooms are adorned with plush beds and spa-like en-suite bathrooms. Step outside to your private deck and soak in the natural surroundings while relaxing in your own hot tub.",
@@ -60,8 +60,8 @@ export const cabins = [
     {
         name: "007",
         maxCapacity: 8,
-        regularPrice: 600,
-        discount: 100,
+        regularPrice: 5999,
+        discount: 500,
         image: imageUrl + "cabin-007.jpg",
         description:
             "Accommodate your large group or multiple families in the spacious and grand wooden cabin 007. Designed to comfortably fit up to 8 people, this cabin offers a secluded retreat in the heart of beautiful forests and mountains. Inside, the cabin features warm and inviting interiors crafted from quality wood, multiple living areas with fireplace, and a fully-equipped kitchen. The bedrooms are comfortable and equipped with en-suite bathrooms. The cabin has a private deck with a hot tub and outdoor seating area, perfect for taking in the natural surroundings.",
@@ -69,7 +69,7 @@ export const cabins = [
     {
         name: "008",
         maxCapacity: 10,
-        regularPrice: 1400,
+        regularPrice: 6999,
         discount: 0,
         image: imageUrl + "cabin-008.jpg",
         description:
