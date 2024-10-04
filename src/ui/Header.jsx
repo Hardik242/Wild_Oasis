@@ -15,7 +15,7 @@ function Header() {
 
     return (
         <StyledHeader>
-            <Button onClick={logout} disabled={isLoading}>
+            <Button onClick={logout} disabled={isLoading} variation="logout">
                 {isLoading ? (
                     <SpinnerMini />
                 ) : (

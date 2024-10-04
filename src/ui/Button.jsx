@@ -29,6 +29,16 @@ const variations = {
             background-color: var(--color-brand-700);
         }
     `,
+    logout: css`
+        color: var(--color-brand-50);
+        background-color: var(--color-brand-600);
+        height: 3.8rem;
+        width: 9.8rem;
+
+        &:hover {
+            background-color: var(--color-brand-700);
+        }
+    `,
     secondary: css`
         color: var(--color-grey-600);
         background: var(--color-grey-0);
