@@ -13,9 +13,7 @@ const Input = styled.input`
             &:focus {
                 outline: none;
             }
-        `}/* &:focus {
-        outline: none;
-    } */
+        `}
 `;
 
 export default Input;
