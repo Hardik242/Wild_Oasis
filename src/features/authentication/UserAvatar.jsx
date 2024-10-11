@@ -4,22 +4,21 @@ import HeaderMenu from "../../ui/HeaderMenu";
 import {useState} from "react";
 
 const StyledUserAvatar = styled.div`
-    /* position: absolute;
-    top: 0.7rem;
-    right: 2rem; */
-    height: ;
     font-weight: 500;
     font-size: 1.4rem;
+    padding: 1rem 1rem;
     color: var(--color-grey-600);
-    cursor: pointer;
+    float: right;
+    margin-right: 2rem;
+    position: relative;
 `;
 
 const StyledDiv = styled.div`
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
 `;
 
 const Avatar = styled.img`

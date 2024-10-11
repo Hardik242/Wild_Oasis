@@ -5,12 +5,25 @@ import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
 
 const show = keyframes`
   from {
-    opacity: 0;
-    top:15rem;
+      opacity: 0;
+      right:-15rem;
   }
   to {
-    opacity: 1;
-    top: 7rem;
+      display: block;
+      opacity: 1;
+      right: 0;
+  }
+`;
+
+const unshow = keyframes`
+  from {
+      opacity: 1;
+      right: 0;
+  }
+  to {
+      opacity: 0;
+      right: -15rem;
+      display: none;
   }
 `;
 
@@ -19,6 +32,7 @@ export const StartMenuHeader = styled.div`
     z-index: 2;
     right: 0;
     width: 28rem;
+    top: 5.5rem;
     flex-wrap: wrap;
     border-radius: 1.4rem;
     overflow: hidden;
@@ -27,11 +41,10 @@ export const StartMenuHeader = styled.div`
     ${(props) =>
         props.isMenuActive
             ? css`
-                  display: block;
-                  animation: ${show} 0.5s ease-in-out;
+                  animation: ${show} 0.5s ease-in-out forwards;
               `
             : css`
-                  display: none;
+                  animation: ${unshow} 0.5s ease-in-out forwards;
               `}
 `;
 
