@@ -1,21 +1,58 @@
 import styled from "styled-components";
+import {useUser} from "./useUser";
+import HeaderMenu from "../../ui/HeaderMenu";
+import {useState} from "react";
 
 const StyledUserAvatar = styled.div`
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  font-weight: 500;
-  font-size: 1.4rem;
-  color: var(--color-grey-600);
+    /* position: absolute;
+    top: 0.7rem;
+    right: 2rem; */
+    height: ;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--color-grey-600);
+    cursor: pointer;
+`;
+
+const StyledDiv = styled.div`
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 `;
 
 const Avatar = styled.img`
-  display: block;
-  width: 4rem;
-  width: 3.6rem;
-  aspect-ratio: 1;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  outline: 2px solid var(--color-grey-100);
+    display: block;
+    width: 4rem;
+    width: 3.6rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    outline: 2px solid var(--color-grey-100);
 `;
+
+export default function UserAvatar() {
+    const {user} = useUser();
+    const {fullName, avatar} = user.user_metadata;
+    const [isMenuActive, setIsMenuActive] = useState(false);
+
+    function handleMenuToggle() {
+        setIsMenuActive(!isMenuActive);
+    }
+
+    return (
+        <StyledUserAvatar onClick={handleMenuToggle}>
+            <StyledDiv isMenuActive={isMenuActive}>
+                <Avatar
+                    src={avatar || "/default-user.jpg"}
+                    alt={`Avatar of ${fullName ? fullName : "default user"}`}
+                />
+                <span>{fullName}</span>
+            </StyledDiv>
+
+            <HeaderMenu isMenuActive={isMenuActive} />
+        </StyledUserAvatar>
+    );
+}

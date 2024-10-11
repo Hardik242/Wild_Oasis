@@ -45,6 +45,8 @@ const GlobalStyles = createGlobalStyle`
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
       --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
+      /* --shadow-lg2:rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px; */
+      --shadow-lg2:rgba(0, 0, 0, 0.4) 0px 30px 90px;
     
       --border-radius-tiny: 3px;
       --border-radius-sm: 5px;
