@@ -3,6 +3,7 @@ import {useLogout} from "../features/authentication/useLogout";
 import SpinnerMini from "./SpinnerMini";
 import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
 import {useNavigate} from "react-router-dom";
+import {useUser} from "../features/authentication/useUser";
 
 export const StartMenuHeader = styled.div`
     position: absolute;
@@ -91,6 +92,21 @@ const UserDetails = styled.div`
     margin: 1rem 0.6rem;
     word-wrap: break-word;
 
+    & img {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        outline: 2px solid var(--color-grey-500);
+        outline-offset: 0.2rem;
+    }
+
+    & div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
     & h3 {
         font-size: 1.9rem;
     }
@@ -101,6 +117,11 @@ const UserDetails = styled.div`
 `;
 
 export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
+    const {user} = useUser();
+    const {
+        user_metadata: {fullName, avatar},
+        email,
+    } = user;
     const {isLoading, logout} = useLogout();
     const navigate = useNavigate();
 
@@ -109,8 +130,11 @@ export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
             <StyledUl>
                 <StyledLi>
                     <UserDetails>
-                        <h3>Hardik Goel</h3>
-                        <span>hardikgoel242@gmailemailoutlook.com</span>
+                        <div>
+                            <img src={avatar} alt={`${fullName} profile`} />
+                        </div>
+                        <h3>{fullName}</h3>
+                        <span>{email}</span>
                     </UserDetails>
                 </StyledLi>
                 <StyledLi>
