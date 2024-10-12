@@ -42,8 +42,8 @@ export default function UserAvatar() {
     }
 
     return (
-        <StyledUserAvatar onClick={handleMenuToggle}>
-            <StyledDiv isMenuActive={isMenuActive}>
+        <StyledUserAvatar>
+            <StyledDiv isMenuActive={isMenuActive} onClick={handleMenuToggle}>
                 <Avatar
                     src={avatar || "/default-user.jpg"}
                     alt={`Avatar of ${fullName ? fullName : "default user"}`}

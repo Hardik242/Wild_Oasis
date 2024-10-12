@@ -1,31 +1,7 @@
-import styled, {css, keyframes} from "styled-components";
+import styled, {css} from "styled-components";
 import {useLogout} from "../features/authentication/useLogout";
 import SpinnerMini from "./SpinnerMini";
 import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
-
-const show = keyframes`
-  from {
-      opacity: 0;
-      right:-15rem;
-  }
-  to {
-      display: block;
-      opacity: 1;
-      right: 0;
-  }
-`;
-
-const unshow = keyframes`
-  from {
-      opacity: 1;
-      right: 0;
-  }
-  to {
-      opacity: 0;
-      right: -15rem;
-      display: none;
-  }
-`;
 
 export const StartMenuHeader = styled.div`
     position: absolute;
@@ -37,14 +13,17 @@ export const StartMenuHeader = styled.div`
     border-radius: 1.4rem;
     overflow: hidden;
     box-shadow: var(--shadow-lg2);
+    transition: all 0.5s ease-in-out;
 
     ${(props) =>
         props.isMenuActive
             ? css`
-                  animation: ${show} 0.5s ease-in-out forwards;
+                  opacity: 1;
+                  transform: translateX(0);
               `
             : css`
-                  animation: ${unshow} 0.5s ease-in-out forwards;
+                  opacity: 0;
+                  transform: translateX(100%);
               `}
 `;
 
@@ -105,11 +84,11 @@ const UserDetails = styled.div`
     font-size: 2rem;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     text-overflow: ellipsis;
     gap: 0.4rem;
     padding: 1rem 2rem;
     margin: 1rem 0.6rem;
+    word-wrap: break-word;
 
     & h3 {
         font-size: 1.9rem;
@@ -129,7 +108,7 @@ export default function HeaderMenu({isMenuActive}) {
                 <StyledLi>
                     <UserDetails>
                         <h3>Hardik Goel</h3>
-                        <span>hardikgoel242@gmail.com</span>
+                        <span>hardikgoel242@gmailemailoutlook.com</span>
                     </UserDetails>
                 </StyledLi>
                 <StyledLi>
