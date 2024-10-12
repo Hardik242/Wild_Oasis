@@ -29,9 +29,17 @@ function CreateCabinForm({setShowForm, cabinToEdit = {}, onCloseModal}) {
                 ? cabinData.image
                 : cabinData.image[0];
 
-        if (toEditCabin)
+        if (toEditCabin) {
+            const oldCabinImage = cabinToEdit.image.replace(
+                "https://sffirbrxnnzifrfpvwtr.supabase.co/storage/v1/object/public/cabins/",
+                ""
+            );
             editCabin(
-                {newCabinData: {...cabinData, image}, id: editId},
+                {
+                    newCabinData: {...cabinData, image},
+                    id: editId,
+                    oldCabinImage,
+                },
                 {
                     onSuccess: () => {
                         onCloseModal();
@@ -39,7 +47,7 @@ function CreateCabinForm({setShowForm, cabinToEdit = {}, onCloseModal}) {
                     },
                 }
             );
-        else
+        } else
             createCabin(
                 {...cabinData, image},
                 {

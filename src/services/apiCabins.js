@@ -16,7 +16,7 @@ export async function deleteCabin(id) {
     }
 }
 
-export async function insertEditCabin(newCabin, id) {
+export async function insertEditCabin(newCabin, id, oldCabinImage = null) {
     const hasImage = newCabin.image?.startsWith?.(supabaseUrl);
 
     const imageName = hasImage
@@ -44,6 +44,14 @@ export async function insertEditCabin(newCabin, id) {
     }
 
     // Store Image to Cabins Bucket
+    if (oldCabinImage && newCabin.image) {
+        const {error: deleteStorage} = await supabase.storage
+            .from("cabins")
+            .remove([oldCabinImage]);
+
+        if (deleteStorage) throw new Error(deleteStorage);
+    }
+
     const {error: storageError} = !hasImage
         ? await supabase.storage
               .from("cabins")

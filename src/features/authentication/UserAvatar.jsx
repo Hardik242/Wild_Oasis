@@ -17,8 +17,14 @@ const StyledDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     cursor: pointer;
+
+    & span {
+        text-transform: capitalize;
+        font-size: 1.6rem;
+        color: var(--color-grey-900);
+    }
 `;
 
 const Avatar = styled.img`
@@ -29,7 +35,8 @@ const Avatar = styled.img`
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
-    outline: 2px solid var(--color-grey-100);
+    outline: 2px solid var(--color-grey-400);
+    outline-offset: 1.5px;
 `;
 
 export default function UserAvatar() {
@@ -48,10 +55,13 @@ export default function UserAvatar() {
                     src={avatar || "/default-user.jpg"}
                     alt={`Avatar of ${fullName ? fullName : "default user"}`}
                 />
-                <span>{fullName}</span>
+                <span>{fullName || "Default User"}</span>
             </StyledDiv>
 
-            <HeaderMenu isMenuActive={isMenuActive} />
+            <HeaderMenu
+                isMenuActive={isMenuActive}
+                handleMenuToggle={handleMenuToggle}
+            />
         </StyledUserAvatar>
     );
 }

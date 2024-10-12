@@ -2,6 +2,7 @@ import styled, {css} from "styled-components";
 import {useLogout} from "../features/authentication/useLogout";
 import SpinnerMini from "./SpinnerMini";
 import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
+import {useNavigate} from "react-router-dom";
 
 export const StartMenuHeader = styled.div`
     position: absolute;
@@ -99,8 +100,9 @@ const UserDetails = styled.div`
     }
 `;
 
-export default function HeaderMenu({isMenuActive}) {
+export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
     const {isLoading, logout} = useLogout();
+    const navigate = useNavigate();
 
     return (
         <StartMenuHeader isMenuActive={isMenuActive}>
@@ -112,7 +114,11 @@ export default function HeaderMenu({isMenuActive}) {
                     </UserDetails>
                 </StyledLi>
                 <StyledLi>
-                    <LiItem>
+                    <LiItem
+                        onClick={() => {
+                            navigate("account");
+                            handleMenuToggle();
+                        }}>
                         Account <HiOutlineUser />
                     </LiItem>
                 </StyledLi>
