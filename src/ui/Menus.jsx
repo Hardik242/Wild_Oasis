@@ -67,9 +67,9 @@ const StyledButton = styled.button`
 
 const MenusContext = createContext();
 
-export default function Menus({children}) {
+function Menus({children}) {
     const [openId, setOpenId] = useState("");
-    const [position, setPosition] = useState("");
+    const [position, setPosition] = useState(null);
 
     const close = () => setOpenId("");
     const open = setOpenId;
@@ -84,12 +84,16 @@ export default function Menus({children}) {
 
 function Toggle({id}) {
     const {openId, close, open, setPosition} = useContext(MenusContext);
+
     function handleClick(e) {
+        e.stopPropagation();
+
         const rect = e.target.closest("button").getBoundingClientRect();
         setPosition({
             x: window.innerWidth - rect.width - rect.x,
             y: rect.y + rect.height + 8,
         });
+
         openId === "" || openId !== id ? open(id) : close();
     }
 
@@ -102,12 +106,12 @@ function Toggle({id}) {
 
 function List({id, children}) {
     const {openId, position, close} = useContext(MenusContext);
-    const ref = useOutsideClick(close, true, true);
+    const ref = useOutsideClick(close, false);
 
     if (openId !== id) return null;
 
     return createPortal(
-        <StyledList ref={ref} position={position}>
+        <StyledList position={position} ref={ref}>
             {children}
         </StyledList>,
         document.body
@@ -121,10 +125,12 @@ function Button({children, icon, onClick}) {
         onClick?.();
         close();
     }
+
     return (
         <li>
             <StyledButton onClick={handleClick}>
-                {icon} <span>{children}</span>
+                {icon}
+                <span>{children}</span>
             </StyledButton>
         </li>
     );
@@ -134,3 +140,5 @@ Menus.Menu = Menu;
 Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
+
+export default Menus;
