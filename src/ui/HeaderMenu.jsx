@@ -4,6 +4,8 @@ import SpinnerMini from "./SpinnerMini";
 import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
 import {useNavigate} from "react-router-dom";
 import {useUser} from "../features/authentication/useUser";
+import DarkModeToggle from "./DarkModeToggle";
+import {useDarkMode} from "../context/DarkModeContext";
 
 export const StartMenuHeader = styled.div`
     position: absolute;
@@ -55,10 +57,10 @@ const LiItem = styled.div`
     ${(props) =>
         props.type === "primary" &&
         css`
-            background-color: var(--color-brand-50);
+            background-color: var(--color-grey-50);
             &:hover {
                 color: var(--color-grey-900);
-                background-color: var(--color-brand-100);
+                background-color: var(--color-grey-100);
                 box-shadow: var(--shadow-md);
                 font-weight: 600;
             }
@@ -118,6 +120,7 @@ const UserDetails = styled.div`
 
 export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
     const {user} = useUser();
+    const {isDarkMode, toggleDarkMode} = useDarkMode();
     const {
         user_metadata: {fullName, avatar},
         email,
@@ -131,7 +134,10 @@ export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
                 <StyledLi>
                     <UserDetails>
                         <div>
-                            <img src={avatar} alt={`${fullName} profile`} />
+                            <img
+                                src={avatar || "/default-user.jpg"}
+                                alt={`${fullName} profile`}
+                            />
                         </div>
                         <h3>{fullName}</h3>
                         <span>{email}</span>
@@ -144,6 +150,13 @@ export default function HeaderMenu({isMenuActive, handleMenuToggle}) {
                             handleMenuToggle();
                         }}>
                         Account <HiOutlineUser />
+                    </LiItem>
+                </StyledLi>
+
+                <StyledLi>
+                    <LiItem onClick={toggleDarkMode}>
+                        {isDarkMode ? "Light Mode" : "Dark Mode"}
+                        <DarkModeToggle />
                     </LiItem>
                 </StyledLi>
 
