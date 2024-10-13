@@ -15,3 +15,4 @@
 - Client side filtering and sorting
 - Prefetching
 - User authentication
+- Dashboard charts and analytics about users and resorts
