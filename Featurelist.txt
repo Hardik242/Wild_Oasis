@@ -13,6 +13,7 @@
 - Pagination
 - API side filtering and sorting
 - Client side filtering and sorting
+- Caching data
 - Prefetching
 - User authentication
 - Dashboard charts and analytics about users and resorts
