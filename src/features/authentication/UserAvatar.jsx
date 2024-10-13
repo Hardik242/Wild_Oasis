@@ -6,7 +6,7 @@ import {useState} from "react";
 const StyledUserAvatar = styled.div`
     font-weight: 500;
     font-size: 1.4rem;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     color: var(--color-grey-600);
     float: right;
     margin-right: 2rem;
@@ -19,11 +19,21 @@ const StyledDiv = styled.div`
     align-items: center;
     gap: 0.6rem;
     cursor: pointer;
+    padding: 0.5rem 1.5rem;
 
     & span {
         text-transform: capitalize;
         font-size: 1.6rem;
         color: var(--color-grey-900);
+    }
+
+    &:hover span {
+        text-decoration: underline;
+    }
+
+    &:hover {
+        background-color: var(--color-grey-100);
+        border-radius: 1rem;
     }
 `;
 
