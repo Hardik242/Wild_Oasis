@@ -5,7 +5,7 @@ import {HiArrowRightOnRectangle, HiOutlineUser} from "react-icons/hi2";
 import {useNavigate} from "react-router-dom";
 import {useUser} from "../features/authentication/useUser";
 import DarkModeToggle from "./DarkModeToggle";
-import {useDarkMode} from "../context/DarkModeContext";
+import useDarkMode from "../context/useDarkMode";
 
 export const StartMenuHeader = styled.div`
     position: absolute;
