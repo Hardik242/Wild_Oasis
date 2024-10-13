@@ -16,6 +16,10 @@ function UpdatePasswordForm() {
         updateUser({password}, {onSuccess: reset});
     }
 
+    function handleReset() {
+        reset();
+    }
+
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <FormRow
@@ -53,7 +57,10 @@ function UpdatePasswordForm() {
                 />
             </FormRow>
             <FormRow>
-                <Button onClick={reset} type="reset" variation="secondary">
+                <Button
+                    onClick={handleReset}
+                    type="reset"
+                    variation="secondary">
                     Cancel
                 </Button>
                 <Button disabled={isUpdating}>Update password</Button>

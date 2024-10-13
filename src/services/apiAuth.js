@@ -45,7 +45,7 @@ export async function logout() {
 }
 
 export async function updateUser({fullName, password, avatar, oldAvatar}) {
-    const hasAvatar = oldAvatar !== null;
+    const hasAvatar = oldAvatar;
     let updateData;
 
     //Update Password or Fullname
