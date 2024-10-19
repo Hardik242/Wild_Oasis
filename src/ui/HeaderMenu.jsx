@@ -27,8 +27,8 @@ export const StartMenuHeader = styled.div`
               `
             : css`
                   opacity: 0;
-                  transform: translateX(100%);
-              `}
+                  transform: translateX(140%);
+              `};
 `;
 
 const StyledUl = styled.ul`
